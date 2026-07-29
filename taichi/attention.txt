@@ -1,0 +1,15 @@
+1.kernel内核可在任意位置调用。函数func只能在kernel中或func中调用
+2.kernel的参数和返回值都必须type hinted。func不必。
+3.Taichi支持nested functions，但不支持nested kernels
+4.内核中最外层的for循环自动parallelized。嵌套在其他结构中的for循环会serialized，可用ti.loop_config(serialize=True)手动serialize
+5.parallelized loop不支持break
+	@ti.kernel
+	def foo():
+  	  for i in x:
+   	     ...
+   	     break # Error!
+6.ti example -p fractal		//fractal源码
+7.ti example -s fractal		//Save
+8.在原生python code中调用taichi func将引起syntax error。kernel可替代python虚拟机，可直接从python函数中调用。
+9.不允许在另一个kernel中调用kernel，即kernel也只能在python范围使用。
+10.ti.types.matrix()，ti.types.vector()，ti.types.struct()为值传递。ti.types.ndarray()，ti.template()引用传递。

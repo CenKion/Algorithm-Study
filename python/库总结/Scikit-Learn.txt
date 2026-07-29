@@ -1,0 +1,32 @@
+from sklearn.linear下划model import LinearRegression, SGDRegressor
+from sklearn.preprocessing import StandardScaler
+
+
+scaler=StandardScaler()				//创建一个标准化器对象 scaler
+X下划norm=scaler.fit下划transform(X下划train)		//进行z-score normalization。均值存储在scaler.mean下划，标准差在scaler.scale下划
+
+
+sgdr=SGDRegressor(max下划iter=1000,alpha=1.0e-3)
+sgdr.fit(X下划norm,y下划train)			//创建并拟合回归模型
+sgdr.n下划iter下划		//迭代次数
+sgdr.t下划				//权重更新次数
+b下划born=sgdr.intercept下划		//截距
+w下划born=sgdr.coef下划			//权重系数
+y下划pred下划sgdr=sgdr.predict(X下划norm)	//预测结果。等价于np.dot(X下划norm,w下划norm)+b下划norm
+
+
+Xtrain = np.array([1.0, 2.0])   #features
+ytrain = np.array([300, 500])   #target value
+linearmodel=LinearRegression()
+linearmodel.fit(Xtrain.reshape(-1,1),ytrain)		//单特征。LinearRegression拟合需要二维X矩阵
+w=linearmodel.coef下划
+b=linearmodel.intercept下划
+ypred=linearmodel.predict(Xtrain.reshape(-1,1))		//同样需要二维X矩阵
+
+
+from sklearn.linear下划model import LogisticRegression
+lr=LogisticRegression(solver='lbfgs')			//lbfgs算法处理中小规模数据及多项式损失。若需进行L1正则化，选择liblinear
+									//参数penalty='l1'可开启L1正则化
+lr.fit(X,y)								//训练模型
+ypred=lr.predict(X)						//预测
+lr.score(X,y)							//计算准确性

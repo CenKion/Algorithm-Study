@@ -1,0 +1,23 @@
+import matplotlib.pyplot as plt
+
+fig,ax=plt.subplots(1,4,figsize=(12,3),sharey=True)					//创建1行4列子图，宽12高3(英尺)，共享y轴
+ax[0].axis([0,3,0,2.5])											//设置x轴取值范围0到3，y轴0到2.5，相当于ax[0].set下划xlim(0,3)
+ax[0].scatter(X下划train,y下划train,color=dlorange,label="target")		//浮点图,橙色,名称target
+ax[0].set下划ylabel("y")										//y轴名称
+ax[0].legend()												//显示图例
+ax[0].set下划title("...")											//第0幅子图设置标题
+ax[0].set下划axis下划off()										//关闭坐标轴
+fig.suptitle("target versus prediction using z-score normalized model")	//总标题
+plt.show()													//展示图片
+
+plt.scatter(X,y,marker='x',c='r',label="target",)						//浮点图，点类型为'x'，颜色red，名称target
+plt.plot(X,X@modelw+modelb,label="predict")						//线图
+plt.xlabel("	X")												//x轴名称X
+plt.legend()												//显示图例
+plt.show()													//展示图片
+
+ax.fill下划between(x,y1,y2=0,where=None,**kwargs)					//填充y1,y2之间的区域,y2默认为0。where指在哪些x位置进行填充。
+														//**kwargs为其他属性,如color,alpha(透明度)	
+plt.close('all')												//关闭所有matplotlib图形
+
+ax.imshow(X,cmap="gray")									//显示图像，并指定颜色映射为灰度

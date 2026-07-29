@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html> </html>
+<h1 style="border: 2px solid Tomato;">Hello World</h1>
+<p title="666"> </p>
+<p style="color:red;font-size:50px;">
+<pre></pre>		//preformatted text
+<head> <title> </title> </head>
+<body> </body>
+<br>		//Line Breaks
+<hr>		//Horizontal Rules
+<img src="img_girl.jpg" alt="Girl with a jacket" width="600" height="1000">
+<img src="smiley.gif" alt="HTML tutorial" style="width:42px;height:42px;">
+<a href="https://www.w3schools.com" target="下划blank">W3SCHOOLs</a>	//target可为"_self","_blank","_parent","_top"
+<a href="mailto:someone@example.com">Send email</a>
+<b> </b>
+
+<!-- This is a comment -->
+
+A complete list of all attributes for each HTML element：https://www.w3schools.com/tags/ref_attributes.asp
+Color names：https://www.w3schools.com/colors/colors_names.asp
+
+//Color
+<h1 style="background-color:rgb(255, 99, 71);">rgb(255, 99, 71)</h1>
+<h1 style="background-color:#ff6347;">#ff6347</h1>
+<h1 style="background-color:hsl(9, 100%, 64%);">hsl(9, 100%, 64%)</h1>
+
+<p>Same as color name "Tomato", but 50% transparent:</p>
+<h1 style="background-color:rgba(255, 99, 71, 0.5);">rgba(255, 99, 71, 0.5)</h1>
+<h1 style="background-color:hsla(9, 100%, 64%, 0.5);">hsla(9, 100%, 64%, 0.5)</h1>
+
+//Style
+Use the style attribute for styling HTML elements
+Use background-color for background color
+Use color for text colors
+Use font-family for text fonts
+Use font-size for text sizes
+Use text-align for text alignment
+
+//Format
+<b> - Bold text
+<strong> - Important text
+<i> - Italic text
+<em> - Emphasized text
+<mark> - Marked text
+<small> - Smaller text
+<del> - Deleted text
+<ins> - Inserted text
+<sub> - Subscript text
+<sup> - Superscript text
+
+//Quotation and Citation Elements
+<abbr>	Defines an abbreviation or acronym
+<address>	Defines contact information for the author/owner of a document
+<bdo>	Defines the text direction
+<blockquote>	Defines a section that is quoted from another source
+<cite>	Defines the title of a work
+<q>	Defines a short inline quotation
+

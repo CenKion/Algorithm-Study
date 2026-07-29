@@ -1,0 +1,32 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import tensorflow as tf
+from tensorflow.keras.layers import Dense, Input
+from tensorflow.keras import Sequential
+from tensorflow.keras.losses import MeanSquaredError, BinaryCrossentropy
+from tensorflow.keras.activations import sigmoid
+from lab_utils_common import dlc
+from lab_neurons_utils import plt_prob_1d, sigmoidnp, plt_linear, plt_logistic
+plt.style.use('./deeplearning.mplstyle')
+import logging											//导入python日志模块
+logging.getLogger("tensorflow").setLevel(logging.ERROR)			//将tensorflow的日志级别设为ERROR，只显示错误信息，避免输出大量训练过程信息
+tf.autograph.set_verbosity(0)								//关闭 TensorFlow AutoGraph 的详细输出
+
+linearlayer=tf.keras.layers.Dense(units=1,activation="linear")		//使用keras api创建Dense layer，输出维度1，激活函数为线性激活
+a1=linearlayer(Xtrain[0].reshape(1,1))							//实例化。该层输入必须为二维
+w,b=linearlayer.get下划weights()							//获取权重，偏置。权重被初始化为随机值
+setw = np.array([[200]])
+setb = np.array([100])
+linearlayer.set下划weights([setw,setb])						//设置权重
+
+model=Sequential(
+	[
+	 tf.keras.layers.Dense(1,input下划dim=1,activation="sigmoid",name="L1"
+	]
+)													//Sequential为一个模型容器，顺序堆叠神经网络层
+model.summary()										//模型结构总结
+logisticlayer=model.get下划layer("L1")						//获取名为"L1"的层
+---------------------------------------------
+norm_l=tf.keras.layers.Normalization(axis=-1)
+norm_l.adapt(X)
+Xn=norm_l(X)
