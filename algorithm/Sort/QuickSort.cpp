@@ -1,83 +1,66 @@
 #include <iostream>
 #include <stdio.h>
-#include <map>
-#include <iomanip>
-#include <random>
+#include <string>
+#include <vector>
+#include <cstring>
 
 using namespace std;
 
-void QuickSort1(int l, int r, int *arr) {
-    if (l >= r) {
-        return;
-    }
+int N,a[100005];
 
-    int x = arr[r];      // 基准值（最右元素）
-    int i = l, j = r - 1; // 左指针 l，右指针 r-1（跳过基准）
-    int tmp;
-
-    while (i < j) {
-        // 从左向右找第一个 >= x 的元素
-        while (i < j && arr[i] < x) i++;
-        // 从右向左找第一个 <= x 的元素
-        while (i < j && arr[j] > x) j--;
-
-        // 只有 i < j 时才交换（防止交叉后错换）
-        if (i < j) {
-            tmp = arr[i];
-            arr[i] = arr[j];
-            arr[j] = tmp;
-            // ? 关键修复：交换后双指针向中间收缩，避免死循环
-            i++;
-            j--;
-        }
-    }
-
-    // 将基准值放到正确位置（此时 i 是分界点）
-    arr[r] = arr[i];
-    arr[i] = x;
-
-    // 递归排序左右两侧
-    QuickSort1(l, i - 1, arr);
-    // ? 关键修复：右半区起始应为 i+1，排除基准
-    QuickSort1(i + 1, r, arr);
-}
-
-void QuickSort2(int l, int r, int *arr) {
-    if (l >= r) {
-        return;
-    }
-    int x = arr[r];
-    int i = l;
-    for(int j = l;j < r;j ++){
-    	if(arr[j] < x){
-    		swap(arr[i],arr[j]);
-    		i ++;
+void InsertionSort(int* a,int l,int r){		//插入排序，减少递归深度。 
+	for(int i = l + 1;i <= r;i ++){
+		int key = a[i],j = i - 1;
+		while(j >= l && a[j] > key){
+			a[j + 1] = a[j];
+			j --;
 		}
+		a[j + 1] = key;
 	}
-    arr[r] = arr[i];
-    arr[i] = x;
-    QuickSort2(l, i - 1, arr);		//跳过基准值！！！不然个数为2个时会死循环 
-    QuickSort2(i + 1, r, arr);
 }
 
-int arr[100];
+int medianOfThree(int *a,int l,int r){		//三数取中 
+	int mid = l + (r - l) / 2;
+	if(a[l] > a[mid]) swap(a[l],a[mid]);
+	if(a[l] > a[r]) swap(a[l],a[r]);
+	if(a[mid] > a[r]) swap(a[l],a[r]);
+	swap(a[mid],a[r]);
+	return a[r];
+}
 
-int main() {
-	int randomNum;
-	random_device rd;
-	mt19937 gen(rd());
-	uniform_int_distribution <int> dist (1,100);
-	
-	for(int i = 0;i < 20;i ++){
-		randomNum = dist(gen);
-		arr[i] = randomNum;
-		cout<<arr[i]<<' ';
+void QuickSort(int* a,int l,int r){
+	if(l >= r) return;
+	if(r - l + 1 <= 16){
+		InsertionSort(a,l,r);
+		return;
 	}
-	cout <<'\n';
-	QuickSort2(0 , 19 , arr);
-	for(int i = 0;i < 20;i ++){
-		cout << arr[i] << ' ';
+	int x = medianOfThree(a,l,r);
+	int i = l,lt = l, gt = r;	//三路划分 
+	while(i <= gt){
+		if(a[i] < x){			//[l,lt-1]满足a[i] < x 
+			swap(a[i],a[lt]);
+			lt ++;
+			i ++;
+		}
+		else if(a[i] > x){		//[gt + 1,r]满足a[i] > x 
+			swap(a[i],a[gt]);
+			gt--;
+		}
+		else i++;
 	}
-	
-    return 0;
+	QuickSort(a,l,lt - 1);
+	QuickSort(a,gt + 1,r);
+}
+
+int main(){
+	scanf("%d",&N);
+	for(int i = 1;i <= N;i ++){
+		scanf("%d",&a[i]);
+	}
+	QuickSort(a,1,N);
+	for(int i = 1;i < N;i ++){
+		printf("%d ",a[i]);
+	}
+	printf("%d",a[N]);
+	return 0;
 }
