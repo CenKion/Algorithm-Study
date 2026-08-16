@@ -11,8 +11,8 @@ int Prime[6000010];
 int cnt = 0;
 
 void GetPrime(int n){
-	isPrime[1] = 0;
 	memset(isPrime,1,sizeof(isPrime));
+	isPrime[1] = 0;
 	for(int i = 2;i <= n;i ++){
 		if(isPrime[i]){
 			Prime[++cnt] = i;
