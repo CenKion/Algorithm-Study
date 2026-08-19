@@ -27,7 +27,7 @@ struct BIT{
 		}
 		return s;
 	}
-}t;		//һ��ע�⣬��ʼ�ð�c��Ϊȫ0����������int main�����д BIT t{}; 
+}t;	
 
 int n,m,q,x,y,k;
 int main(){
