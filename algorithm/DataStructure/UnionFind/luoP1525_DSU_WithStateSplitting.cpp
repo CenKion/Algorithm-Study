@@ -41,7 +41,7 @@ bool cmp(hate &a,hate &b){
 	return a.c > b.c;
 }
 
-int n,m,enemy[MAXN];
+int n,m;
 
 int main(){
 	cin >> n >> m;
